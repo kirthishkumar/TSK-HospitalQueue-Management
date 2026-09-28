@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MediQueue | Smart Hospital Priority System</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f6faff;
+            color: #10233f;
+            overflow-x: hidden;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 76px;
+            z-index: 1000;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(255,255,255,0.90);
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(20,90,160,0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            color: white;
+            font-size: 25px;
+            font-weight: 800;
+
+            background: linear-gradient(135deg,#087cfb,#13c7a3);
+
+            box-shadow: 0 8px 25px rgba(8,124,251,0.25);
+        }
+
+        .logo-name {
+            font-size: 21px;
+            font-weight: 800;
+            color: #10233f;
+        }
+
+        .logo-name span {
+            color: #087cfb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #61738b;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #087cfb;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .login {
+            text-decoration: none;
+            color: #087cfb;
+
+            padding: 11px 17px;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .register {
+            text-decoration: none;
+            color: white;
+
+            padding: 12px 20px;
+
+            background: #087cfb;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            box-shadow: 0 8px 20px rgba(8,124,251,0.20);
+
+            transition: 0.3s;
+        }
+
+        .register:hover {
+            transform: translateY(-2px);
+        }
+
+        .menu {
+            display: none;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 120px 7% 70px;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(8,124,251,0.13),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 10% 85%,
+                    rgba(19,199,163,0.10),
+                    transparent 25%
+                ),
+                #f7fbff;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(8,124,251,0.08);
+
+            right: -200px;
+            top: 100px;
+        }
+
+        .hero-content {
+            width: 55%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 9px 14px;
+
+            margin-bottom: 23px;
+
+            border-radius: 30px;
+
+            background: #e9f5ff;
+            border: 1px solid #cce8ff;
+
+            color: #087cfb;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 0.4px;
+        }
+
+        .tag-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #13c7a3;
+
+            box-shadow:
+                0 0 0 5px rgba(19,199,163,0.12);
+        }
+
+        .hero h1 {
+            font-size: clamp(43px,5vw,72px);
+
+            line-height: 1.05;
+
+            letter-spacing: -2.5px;
+
+            margin-bottom: 25px;
+
+            color: #10233f;
+        }
+
+        .hero h1 span {
+            color: #087cfb;
+        }
+
+        .hero-text {
+            max-width: 610px;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            color: #61738b;
+
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 13px;
+            flex-wrap: wrap;
+        }
+
+        .primary {
+            text-decoration: none;
+
+            padding: 15px 22px;
+
+            color: white;
+
+            background: linear-gradient(
+                135deg,
+                #087cfb,
+                #0665d5
+            );
+
+            border-radius: 11px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            box-shadow:
+                0 12px 30px rgba(8,124,251,0.25);
+
+            transition: 0.3s;
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+        }
+
+        .secondary {
+            text-decoration: none;
+
+            padding: 15px 22px;
+
+            color: #10233f;
+
+            background: white;
+
+            border: 1px solid #dce8f3;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .secondary:hover {
+            color: #087cfb;
+            border-color: #087cfb;
+        }
+
+
+        /* ================= DASHBOARD ================= */
+
+        .hero-dashboard {
+            width: 45%;
+
+            display: flex;
+            justify-content: center;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .dashboard {
+            width: 465px;
+            max-width: 100%;
+
+            padding: 21px;
+
+            background: rgba(255,255,255,0.91);
+
+            backdrop-filter: blur(20px);
+
+            border-radius: 24px;
+
+            border: 1px solid #dce9f4;
+
+            box-shadow:
+                0 35px 75px rgba(32,87,130,0.14);
+
+            transform: rotate(1deg);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 19px;
+        }
+
+        .dashboard-title {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .live {
+            padding: 7px 11px;
+
+            border-radius: 20px;
+
+            background: #eafff8;
+
+            color: #10a47f;
+
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .priority {
+            padding: 19px;
+
+            background: linear-gradient(
+                135deg,
+                #edf7ff,
+                #f5fbff
+            );
+
+            border: 1px solid #dceefa;
+
+            border-radius: 16px;
+
+            margin-bottom: 13px;
+        }
+
+        .priority-label {
+            font-size: 9px;
+            color: #7b8da1;
+
+            margin-bottom: 8px;
+        }
+
+        .priority-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .patient {
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .emergency {
+            padding: 7px 9px;
+
+            border-radius: 7px;
+
+            color: #d73737;
+
+            background: #fff0f0;
+
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .patient-details {
+            display: flex;
+            gap: 13px;
+
+            margin-top: 12px;
+
+            color: #708298;
+
+            font-size: 9px;
+        }
+
+        .queue {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .queue-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 12px;
+
+            background: #fafcff;
+
+            border: 1px solid #edf2f7;
+
+            border-radius: 11px;
+        }
+
+        .queue-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .number {
+            width: 29px;
+            height: 29px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e9f4ff;
+
+            color: #087cfb;
+
+            border-radius: 8px;
+
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .queue-name {
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .queue-info {
+            font-size: 8px;
+            color: #8494a8;
+
+            margin-top: 3px;
+        }
+
+        .queue-time {
+            font-size: 9px;
+            font-weight: 700;
+            color: #65778d;
+        }
+
+
+        /* ================= FLOATING CARDS ================= */
+
+        .floating {
+            position: absolute;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 13px 15px;
+
+            background: white;
+
+            border: 1px solid #e1ebf4;
+
+            border-radius: 13px;
+
+            box-shadow:
+                0 15px 35px rgba(31,76,110,0.13);
+
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        .doctor-card {
+            left: -38px;
+            bottom: 45px;
+        }
+
+        .wait-card {
+            right: -30px;
+            top: 65px;
+
+            animation-delay: 1.2s;
+        }
+
+        .floating-icon {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #edf7ff;
+
+            border-radius: 9px;
+
+            font-size: 16px;
+        }
+
+        .floating-small {
+            font-size: 8px;
+            color: #8191a4;
+        }
+
+        .floating-big {
+            font-size: 10px;
+            font-weight: 800;
+
+            margin-top: 3px;
+        }
+
+        @keyframes floating {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-9px);
+            }
+
+        }
+
+
+        /* ================= STATS ================= */
+
+        .stats {
+            padding: 25px 7% 70px;
+
+            background: white;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            border: 1px solid #e5edf5;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 40px rgba(32,80,120,0.06);
+        }
+
+        .stat {
+            text-align: center;
+
+            padding: 25px;
+
+            border-right: 1px solid #e5edf5;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat h2 {
+            color: #087cfb;
+
+            font-size: 24px;
+
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            color: #7b8da2;
+
+            font-size: 10px;
+        }
+
+
+        /* ================= FEATURES ================= */
+
+        .features {
+            padding: 100px 7%;
+
+            background:
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(8,124,251,0.07),
+                    transparent 25%
+                ),
+                #f8fbff;
+        }
+
+        .section-title {
+            text-align: center;
+
+            max-width: 680px;
+
+            margin: auto auto 55px;
+        }
+
+        .section-tag {
+            color: #087cfb;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+        .section-title h2 {
+            font-size: 37px;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 14px;
+        }
+
+        .section-title p {
+            color: #72849a;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+        .feature-grid {
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 20px;
+        }
+
+        .feature {
+            padding: 27px;
+
+            background: white;
+
+            border: 1px solid #e5edf5;
+
+            border-radius: 18px;
+
+            transition: 0.35s;
+        }
+
+        .feature:hover {
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 20px 45px rgba(28,81,119,0.10);
+
+            border-color: #cfe6fa;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #edf7ff;
+
+            border-radius: 13px;
+
+            font-size: 21px;
+
+            margin-bottom: 18px;
+        }
+
+        .feature h3 {
+            font-size: 15px;
+
+            margin-bottom: 9px;
+        }
+
+        .feature p {
+            color: #78899d;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+
+        /* ================= EMERGENCY ================= */
+
+        .emergency-section {
+            padding: 90px 7%;
+
+            background: #10233f;
+        }
+
+        .emergency-container {
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 40px;
+        }
+
+        .emergency-content {
+            max-width: 680px;
+        }
+
+        .emergency-label {
+            color: #ff7070;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 13px;
+        }
+
+        .emergency-content h2 {
+            color: white;
+
+            font-size: 37px;
+
+            line-height: 1.2;
+
+            margin-bottom: 17px;
+        }
+
+        .emergency-content p {
+            color: #aabbd0;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+        .emergency-button {
+            flex-shrink: 0;
+
+            padding: 15px 22px;
+
+            color: white;
+
+            text-decoration: none;
+
+            background: #ff5757;
+
+            border-radius: 11px;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            box-shadow:
+                0 12px 30px rgba(255,87,87,0.25);
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            padding: 28px 7%;
+
+            text-align: center;
+
+            background: #0b1a2d;
+
+            color: #71859c;
+
+            font-size: 10px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width:1000px) {
+
+            .nav-links,
+            .nav-actions {
+                display: none;
+            }
+
+            .menu {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column;
+
+                text-align: center;
+
+                padding-top: 125px;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .hero-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-dashboard {
+                width: 100%;
+
+                margin-top: 65px;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .stat:nth-child(-n+2) {
+                border-bottom: 1px solid #e5edf5;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .emergency-container {
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+        }
+
+
+        @media(max-width:600px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .hero {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .hero h1 {
+                font-size: 41px;
+
+                letter-spacing: -1.5px;
+            }
+
+            .hero-text {
+                font-size: 13px;
+            }
+
+            .dashboard {
+                padding: 15px;
+            }
+
+            .floating {
+                display: none;
+            }
+
+            .stats {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .stat {
+                padding: 20px 10px;
+            }
+
+            .features {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+            .emergency-section {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .emergency-content h2 {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+
+        <div class="logo-icon">
+            +
+        </div>
+
+        <div class="logo-name">
+            Medi<span>Queue</span>
+        </div>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="#home">Home</a>
+
+        <a href="#features">Features</a>
+
+        <a href="#emergency">Emergency</a>
+
+        <a href="#about">About</a>
+
+    </nav>
+
+
+    <div class="nav-actions">
+
+        <a href="login.html" class="login">
+            Login
+        </a>
+
+        <a href="register.html" class="register">
+            Get Started
+        </a>
+
+    </div>
+
+
+    <div class="menu">
+        ☰
+    </div>
+
+</header>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+
+    <div class="hero-content">
+
+
+        <div class="tag">
+
+            <span class="tag-dot"></span>
+
+            SMART HOSPITAL PRIORITY SYSTEM
+
+        </div>
+
+
+        <h1>
+
+            Healthcare that
+            <span>moves intelligently.</span>
+
+        </h1>
+
+
+        <p class="hero-text">
+
+            MediQueue dynamically manages hospital appointments
+            and emergency patients by continuously evaluating
+            emergency level, waiting time, age, appointment time,
+            doctor availability and medical specialization.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a href="register.html" class="primary">
+
+                Register Appointment →
+
+            </a>
+
+
+            <a href="#features" class="secondary">
+
+                Explore System
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= LIVE QUEUE ================= -->
+
+    <div class="hero-dashboard">
+
+
+        <div class="dashboard">
+
+
+            <div class="dashboard-header">
+
+                <div class="dashboard-title">
+
+                    Live Priority Queue
+
+                </div>
+
+                <div class="live">
+
+                    ● LIVE
+
+                </div>
+
+            </div>
+
+
+
+            <div class="priority">
+
+                <div class="priority-label">
+
+                    NEXT PATIENT
+
+                </div>
+
+
+                <div class="priority-row">
+
+                    <div class="patient">
+
+                        Rahul Kumar
+
+                    </div>
+
+
+                    <div class="emergency">
+
+                        HIGH PRIORITY
+
+                    </div>
+
+                </div>
+
+
+                <div class="patient-details">
+
+                    <span>
+                        Emergency Level 2
+                    </span>
+
+                    <span>
+                        Wait: 18 min
+                    </span>
+
+                    <span>
+                        Cardiology
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="queue">
+
+
+                <div class="queue-item">
+
+                    <div class="queue-left">
+
+                        <div class="number">
+                            02
+                        </div>
+
+
+                        <div>
+
+                            <div class="queue-name">
+                                Priya S
+                            </div>
+
+                            <div class="queue-info">
+                                General • 3:30 PM
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="queue-time">
+                        12 min
+                    </div>
+
+                </div>
+
+
+
+                <div class="queue-item">
+
+                    <div class="queue-left">
+
+                        <div class="number">
+                            03
+                        </div>
+
+
+                        <div>
+
+                            <div class="queue-name">
+                                Arjun R
+                            </div>
+
+                            <div class="queue-info">
+                                Pediatrics • 3:35 PM
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="queue-time">
+                        17 min
+                    </div>
+
+                </div>
+
+
+
+                <div class="queue-item">
+
+                    <div class="queue-left">
+
+                        <div class="number">
+                            04
+                        </div>
+
+
+                        <div>
+
+                            <div class="queue-name">
+                                Meena K
+                            </div>
+
+                            <div class="queue-info">
+                                Orthopedic • 3:40 PM
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="queue-time">
+                        22 min
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DOCTOR FLOATING CARD -->
+
+        <div class="floating doctor-card">
+
+            <div class="floating-icon">
+                👨‍⚕️
+            </div>
+
+            <div>
+
+                <div class="floating-small">
+                    Doctor Available
+                </div>
+
+                <div class="floating-big">
+                    Dr. Aravind • Cardiology
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- WAITING FLOATING CARD -->
+
+        <div class="floating wait-card">
+
+            <div class="floating-icon">
+                ⏱
+            </div>
+
+            <div>
+
+                <div class="floating-small">
+                    Estimated Wait
+                </div>
+
+                <div class="floating-big">
+                    18 Minutes
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= STATS ================= -->
+
+<section class="stats">
+
+    <div class="stats-container">
+
+
+        <div class="stat">
+
+            <h2>
+                24/7
+            </h2>
+
+            <p>
+                Priority Monitoring
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                8+
+            </h2>
+
+            <p>
+                Priority Factors
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                LIVE
+            </h2>
+
+            <p>
+                Queue Recalculation
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                SMART
+            </h2>
+
+            <p>
+                Doctor Matching
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features" id="features">
+
+
+    <div class="section-title">
+
+        <div class="section-tag">
+            Intelligent Healthcare
+        </div>
+
+
+        <h2>
+            One system. Every patient.
+        </h2>
+
+
+        <p>
+
+            MediQueue balances emergency treatment
+            with fair appointment scheduling through
+            dynamic priority calculation.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🚨
+            </div>
+
+            <h3>
+                Emergency Priority
+            </h3>
+
+            <p>
+
+                Emergency patients can immediately
+                receive higher priority when their
+                medical condition requires urgent care.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🧠
+            </div>
+
+            <h3>
+                Dynamic Priority Engine
+            </h3>
+
+            <p>
+
+                Priority is continuously recalculated
+                according to emergency level, waiting
+                time, age and appointment status.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                👨‍⚕️
+            </div>
+
+            <h3>
+                Smart Doctor Assignment
+            </h3>
+
+            <p>
+
+                Patients are automatically matched
+                with available doctors according to
+                their required specialization.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ⏱
+            </div>
+
+            <h3>
+                Waiting Time Prediction
+            </h3>
+
+            <p>
+
+                The system estimates patient waiting
+                time based on queue position and
+                doctor availability.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📅
+            </div>
+
+            <h3>
+                Appointment Management
+            </h3>
+
+            <p>
+
+                Register appointments, track arrivals,
+                handle cancellations and update
+                appointment status.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Treatment Tracking
+            </h3>
+
+            <p>
+
+                Track patients from registration to
+                treatment completion and maintain
+                complete appointment history.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= EMERGENCY ================= -->
+
+<section class="emergency-section" id="emergency">
+
+
+    <div class="emergency-container">
+
+
+        <div class="emergency-content">
+
+            <div class="emergency-label">
+
+                EMERGENCY CARE
+
+            </div>
+
+
+            <h2>
+
+                When every second matters,
+                the queue adapts.
+
+            </h2>
+
+
+            <p>
+
+                MediQueue doesn't blindly follow
+                appointment times. It dynamically
+                balances emergency severity,
+                waiting time, age, specialization
+                and doctor availability to determine
+                which patient should be treated next.
+
+            </p>
+
+        </div>
+
+
+        <a href="emergency.html" class="emergency-button">
+
+            Emergency Assistance →
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer id="about">
+
+    <p>
+
+        © 2026
+
+        <strong>MediQueue</strong>
+
+        — Dynamic Hospital Appointment &
+        Emergency Priority System.
+
+    </p>
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    const menu = document.querySelector(".menu");
+
+    const nav = document.querySelector(".nav-links");
+
+
+    menu.addEventListener("click", function () {
+
+        if (nav.style.display === "flex") {
+
+            nav.style.display = "none";
+
+        } else {
+
+            nav.style.display = "flex";
+
+            nav.style.position = "absolute";
+
+            nav.style.top = "76px";
+
+            nav.style.left = "0";
+
+            nav.style.width = "100%";
+
+            nav.style.padding = "25px";
+
+            nav.style.flexDirection = "column";
+
+            nav.style.background = "white";
+
+            nav.style.boxShadow =
+                "0 15px 30px rgba(0,0,0,0.08)";
+
+        }
+
+    });
+
+
+    /* Close mobile menu after clicking */
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            if (window.innerWidth <= 1000) {
+
+                nav.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+</script>
+
+
+</body>
+</html>

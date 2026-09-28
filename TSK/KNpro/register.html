@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MediQueue | Registration</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(8,124,251,0.12), transparent 28%),
+                radial-gradient(circle at 90% 90%, rgba(19,199,163,0.10), transparent 28%),
+                #f5faff;
+
+            color: #10233f;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 76px;
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(255,255,255,0.90);
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid #e5edf5;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: linear-gradient(135deg,#087cfb,#13c7a3);
+
+            color: white;
+
+            font-size: 23px;
+            font-weight: 800;
+        }
+
+        .logo-name {
+            font-size: 20px;
+            font-weight: 800;
+
+            color: #10233f;
+        }
+
+        .logo-name span {
+            color: #087cfb;
+        }
+
+        .back {
+            text-decoration: none;
+
+            color: #61738b;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: .3s;
+        }
+
+        .back:hover {
+            color: #087cfb;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .page {
+            min-height: calc(100vh - 76px);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 55px 20px;
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 1050px;
+
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+
+            background: white;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            border: 1px solid #e2ebf4;
+
+            box-shadow:
+                0 30px 80px rgba(32,87,130,0.12);
+        }
+
+
+        /* ================= LEFT PANEL ================= */
+
+        .info-panel {
+            position: relative;
+
+            padding: 48px 40px;
+
+            color: white;
+
+            background:
+                radial-gradient(circle at 90% 10%, rgba(255,255,255,0.15), transparent 30%),
+                linear-gradient(145deg,#087cfb,#0757ba);
+        }
+
+        .info-panel::after {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            border-radius: 50%;
+
+            right: -100px;
+            bottom: -80px;
+        }
+
+        .info-label {
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            opacity: .75;
+
+            margin-bottom: 16px;
+        }
+
+        .info-panel h1 {
+            font-size: 37px;
+            line-height: 1.15;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 18px;
+        }
+
+        .info-panel p {
+            color: #dbeeff;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+
+            margin-bottom: 35px;
+        }
+
+        .benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .benefit-icon {
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: rgba(255,255,255,0.12);
+
+            font-size: 15px;
+        }
+
+        .benefit-text {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+
+        /* ================= FORM PANEL ================= */
+
+        .form-panel {
+            padding: 42px 48px;
+        }
+
+        .form-heading {
+            margin-bottom: 25px;
+        }
+
+        .form-heading h2 {
+            font-size: 25px;
+
+            margin-bottom: 7px;
+        }
+
+        .form-heading p {
+            color: #7b8da2;
+
+            font-size: 11px;
+        }
+
+
+        /* ================= ROLE ================= */
+
+        .role-title {
+            font-size: 11px;
+            font-weight: 800;
+
+            margin-bottom: 10px;
+
+            color: #53657c;
+        }
+
+        .roles {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+
+            gap: 9px;
+
+            margin-bottom: 25px;
+        }
+
+        .role {
+            position: relative;
+        }
+
+        .role input {
+            display: none;
+        }
+
+        .role label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            gap: 6px;
+
+            height: 75px;
+
+            border: 1px solid #e1eaf3;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            color: #72849a;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            transition: .25s;
+        }
+
+        .role-icon {
+            font-size: 20px;
+        }
+
+        .role input:checked + label {
+            color: #087cfb;
+
+            border-color: #087cfb;
+
+            background: #edf7ff;
+
+            box-shadow:
+                0 7px 20px rgba(8,124,251,0.08);
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2,1fr);
+
+            gap: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group.full {
+            grid-column: span 2;
+        }
+
+        .input-group label {
+            font-size: 10px;
+
+            font-weight: 700;
+
+            color: #53657c;
+
+            margin-bottom: 7px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+
+            height: 43px;
+
+            padding: 0 12px;
+
+            border: 1px solid #dfe8f1;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 11px;
+
+            color: #10233f;
+
+            background: #fbfdff;
+
+            transition: .25s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: #087cfb;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px rgba(8,124,251,0.08);
+        }
+
+
+        /* ================= ROLE SPECIFIC ================= */
+
+        .role-fields {
+            display: none;
+        }
+
+        .role-fields.active {
+            display: block;
+        }
+
+        .role-section-title {
+            font-size: 11px;
+            font-weight: 800;
+
+            color: #087cfb;
+
+            margin: 22px 0 14px;
+        }
+
+
+        /* ================= TERMS ================= */
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+
+            margin-top: 20px;
+        }
+
+        .terms input {
+            margin-top: 2px;
+        }
+
+        .terms label {
+            color: #78899d;
+
+            font-size: 9px;
+
+            line-height: 1.5;
+        }
+
+        .terms a {
+            color: #087cfb;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .submit-btn {
+            width: 100%;
+
+            height: 46px;
+
+            margin-top: 20px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            color: white;
+
+            background: linear-gradient(
+                135deg,
+                #087cfb,
+                #0665d5
+            );
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 25px rgba(8,124,251,0.22);
+
+            transition: .3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 30px rgba(8,124,251,0.28);
+        }
+
+        .login-text {
+            text-align: center;
+
+            color: #7b8da2;
+
+            font-size: 10px;
+
+            margin-top: 17px;
+        }
+
+        .login-text a {
+            color: #087cfb;
+
+            text-decoration: none;
+
+            font-weight: 800;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:850px) {
+
+            .register-container {
+                grid-template-columns: 1fr;
+            }
+
+            .info-panel {
+                padding: 35px;
+            }
+
+            .info-panel h1 {
+                font-size: 30px;
+            }
+
+            .benefits {
+                display: grid;
+                grid-template-columns: repeat(3,1fr);
+            }
+
+            .benefit {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .form-panel {
+                padding: 35px;
+            }
+        }
+
+
+        @media(max-width:600px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .page {
+                padding: 25px 12px;
+            }
+
+            .info-panel {
+                padding: 30px 25px;
+            }
+
+            .info-panel h1 {
+                font-size: 27px;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .benefit {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .form-panel {
+                padding: 30px 20px;
+            }
+
+            .roles {
+                grid-template-columns: 1fr;
+            }
+
+            .role label {
+                height: 60px;
+
+                flex-direction: row;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .input-group.full {
+                grid-column: span 1;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+
+        <div class="logo-icon">
+            +
+        </div>
+
+        <div class="logo-name">
+            Medi<span>Queue</span>
+        </div>
+
+    </a>
+
+    <a href="index.html" class="back">
+        ← Back to Home
+    </a>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="page">
+
+
+    <div class="register-container">
+
+
+        <!-- ================= INFO ================= -->
+
+        <section class="info-panel">
+
+            <div class="info-label">
+                MEDIQUEUE
+            </div>
+
+            <h1>
+                Smarter care starts with you.
+            </h1>
+
+            <p>
+                Create your MediQueue account and experience
+                intelligent hospital appointment management,
+                dynamic emergency prioritization and faster
+                doctor assignment.
+            </p>
+
+
+            <div class="benefits">
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        🚨
+                    </div>
+
+                    <div class="benefit-text">
+                        Emergency Priority
+                    </div>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        📅
+                    </div>
+
+                    <div class="benefit-text">
+                        Easy Appointments
+                    </div>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        ⏱
+                    </div>
+
+                    <div class="benefit-text">
+                        Live Waiting Time
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FORM ================= -->
+
+        <section class="form-panel">
+
+
+            <div class="form-heading">
+
+                <h2>
+                    Create your account
+                </h2>
+
+                <p>
+                    Select your role to continue registration.
+                </p>
+
+            </div>
+
+
+
+            <!-- ROLE -->
+
+            <div class="role-title">
+                REGISTER AS
+            </div>
+
+
+            <div class="roles">
+
+
+                <div class="role">
+
+                    <input
+                        type="radio"
+                        name="role"
+                        id="patient"
+                        value="patient"
+                        checked
+                    >
+
+                    <label for="patient">
+
+                        <span class="role-icon">
+                            👤
+                        </span>
+
+                        Patient
+
+                    </label>
+
+                </div>
+
+
+                <div class="role">
+
+                    <input
+                        type="radio"
+                        name="role"
+                        id="doctor"
+                        value="doctor"
+                    >
+
+                    <label for="doctor">
+
+                        <span class="role-icon">
+                            👨‍⚕️
+                        </span>
+
+                        Doctor
+
+                    </label>
+
+                </div>
+
+
+                <div class="role">
+
+                    <input
+                        type="radio"
+                        name="role"
+                        id="admin"
+                        value="admin"
+                    >
+
+                    <label for="admin">
+
+                        <span class="role-icon">
+                            🛡️
+                        </span>
+
+                        Admin
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COMMON FIELDS -->
+
+            <div class="form-grid">
+
+
+                <div class="input-group">
+
+                    <label>
+                        FULL NAME
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        DATE OF BIRTH
+                    </label>
+
+                    <input
+                        type="date"
+                        id="dob"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        GENDER
+                    </label>
+
+                    <select id="gender">
+
+                        <option value="">
+                            Select gender
+                        </option>
+
+                        <option>
+                            Male
+                        </option>
+
+                        <option>
+                            Female
+                        </option>
+
+                        <option>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        MOBILE NUMBER
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="mobile"
+                        placeholder="+91 XXXXX XXXXX"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group full">
+
+                    <label>
+                        EMAIL ADDRESS
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="example@email.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        PASSWORD
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create password"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        CONFIRM PASSWORD
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= PATIENT FIELDS ================= -->
+
+            <div
+                class="role-fields active"
+                id="patientFields"
+            >
+
+                <div class="role-section-title">
+                    PATIENT INFORMATION
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="input-group">
+
+                        <label>
+                            BLOOD GROUP
+                        </label>
+
+                        <select>
+
+                            <option>
+                                Select blood group
+                            </option>
+
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            EMERGENCY CONTACT
+                        </label>
+
+                        <input
+                            type="tel"
+                            placeholder="Emergency contact number"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group full">
+
+                        <label>
+                            ADDRESS
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Enter your address"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= DOCTOR FIELDS ================= -->
+
+            <div
+                class="role-fields"
+                id="doctorFields"
+            >
+
+                <div class="role-section-title">
+                    DOCTOR INFORMATION
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="input-group">
+
+                        <label>
+                            MEDICAL ID
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Medical registration ID"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            EXPERIENCE
+                        </label>
+
+                        <input
+                            type="number"
+                            placeholder="Years of experience"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            SPECIALIZATION
+                        </label>
+
+                        <select>
+
+                            <option>
+                                Select specialization
+                            </option>
+
+                            <option>
+                                Cardiology
+                            </option>
+
+                            <option>
+                                Neurology
+                            </option>
+
+                            <option>
+                                Orthopedics
+                            </option>
+
+                            <option>
+                                Pediatrics
+                            </option>
+
+                            <option>
+                                Dermatology
+                            </option>
+
+                            <option>
+                                General Medicine
+                            </option>
+
+                            <option>
+                                Emergency Medicine
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            DEPARTMENT
+                        </label>
+
+                        <select>
+
+                            <option>
+                                Select department
+                            </option>
+
+                            <option>
+                                Emergency
+                            </option>
+
+                            <option>
+                                Outpatient
+                            </option>
+
+                            <option>
+                                General
+                            </option>
+
+                            <option>
+                                Specialty Care
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= ADMIN FIELDS ================= -->
+
+            <div
+                class="role-fields"
+                id="adminFields"
+            >
+
+                <div class="role-section-title">
+                    ADMIN INFORMATION
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="input-group">
+
+                        <label>
+                            ADMIN ID
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Enter admin ID"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            HOSPITAL
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Hospital name"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TERMS -->
+
+            <div class="terms">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                >
+
+                <label for="terms">
+
+                    I agree to the
+                    <a href="#">
+                        Terms & Conditions
+                    </a>
+                    and
+                    <a href="#">
+                        Privacy Policy
+                    </a>.
+
+                </label>
+
+            </div>
+
+
+            <button
+                class="submit-btn"
+                onclick="registerUser()"
+            >
+
+                CREATE ACCOUNT →
+
+            </button>
+
+
+            <div class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<script>
+
+    const roles =
+        document.querySelectorAll(
+            'input[name="role"]'
+        );
+
+    const patientFields =
+        document.getElementById(
+            "patientFields"
+        );
+
+    const doctorFields =
+        document.getElementById(
+            "doctorFields"
+        );
+
+    const adminFields =
+        document.getElementById(
+            "adminFields"
+        );
+
+
+    roles.forEach(role => {
+
+        role.addEventListener(
+            "change",
+            function () {
+
+                patientFields.classList.remove(
+                    "active"
+                );
+
+                doctorFields.classList.remove(
+                    "active"
+                );
+
+                adminFields.classList.remove(
+                    "active"
+                );
+
+
+                if (this.value === "patient") {
+
+                    patientFields.classList.add(
+                        "active"
+                    );
+
+                }
+
+                if (this.value === "doctor") {
+
+                    doctorFields.classList.add(
+                        "active"
+                    );
+
+                }
+
+                if (this.value === "admin") {
+
+                    adminFields.classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+
+    function registerUser() {
+
+        const name =
+            document.getElementById(
+                "fullName"
+            ).value.trim();
+
+        const email =
+            document.getElementById(
+                "email"
+            ).value.trim();
+
+        const password =
+            document.getElementById(
+                "password"
+            ).value;
+
+        const confirmPassword =
+            document.getElementById(
+                "confirmPassword"
+            ).value;
+
+        const terms =
+            document.getElementById(
+                "terms"
+            ).checked;
+
+
+        if (!name || !email || !password) {
+
+            alert(
+                "Please fill all required fields."
+            );
+
+            return;
+        }
+
+
+        if (password !== confirmPassword) {
+
+            alert(
+                "Passwords do not match."
+            );
+
+            return;
+        }
+
+
+        if (!terms) {
+
+            alert(
+                "Please accept the Terms & Conditions."
+            );
+
+            return;
+        }
+
+
+        const selectedRole =
+            document.querySelector(
+                'input[name="role"]:checked'
+            ).value;
+
+
+        /*
+            Temporary frontend workflow.
+
+            Later this will connect to:
+
+            Spring Boot
+                  ↓
+            REST API
+                  ↓
+              MySQL
+
+        */
+
+
+        if (selectedRole === "patient") {
+
+            window.location.href =
+                "patient-dashboard.html";
+
+        }
+
+        else if (selectedRole === "doctor") {
+
+            window.location.href =
+                "doctor-dashboard.html";
+
+        }
+
+        else if (selectedRole === "admin") {
+
+            window.location.href =
+                "admin-dashboard.html";
+
+        }
+
+    }
+
+</script>
+
+
+</body>
+</html>
